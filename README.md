@@ -43,4 +43,4 @@ I decided to improve model's ability to perform in case of face covering. To do 
 
 ## Reproducing the experiment
 
-Download dataset and put it in 'dir_path' (main directory of the repository). Download weights and put model.best.pth  in 'dir_path / 'logdir' / 'checkpoints' / 'model.best.pth'. Comment runner.train() function. Then you can run main.py, wait till data is preprocessed and predictions are made.
+Download dataset and put it in 'dir_path' (main directory of the repository). Download weights and put model.best.pth  in 'dir_path / 'logdir' / 'checkpoints' / 'model.best.pth' (folders in path should be created). Comment runner.train() function. Then you can run main.py, wait till data is preprocessed and predictions are made.
