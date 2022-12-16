@@ -41,6 +41,3 @@ Here are some inference examples (see all the ones [here](https://github.com/ash
 
 I decided to improve model's ability to perform in case of face covering. To do that I applied A.CoarseDropout(max_holes=1, max_height=0.7, max_width=0.8, min_height=0.2, min_width=0.3, mask_fill_value=120, p=0.7)- it helps to imitate face covering cases, so model could recognize non-face elements and avoid it during segmentation. Also I preprocessed masks so they have eyglasses pixels turned off if this accessorize exists on the image. It allows model to avoid eyeglasses when making predictions (you can see the gif above).
 
-## Reproducing the experiment
-
-Download dataset and put it in 'dir_path' (main directory of the repository). Download weights and put model.best.pth  in 'dir_path / 'model.best.pth'. Comment runner.train() function. Then you can run main.py, wait till data is preprocessed and predictions are made.
