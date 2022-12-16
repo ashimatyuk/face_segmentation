@@ -6,7 +6,7 @@ This repository contains implementation of Unet based model and DeepLabV3 based 
 # Dataset
 The link to git repo with dataset: [CelebAMask-HQ](https://github.com/switchablenorms/CelebAMask-HQ). 
 
-In [data_preprocessing.py](https://github.com/ashimatyuk/face_segmentation_test_task/blob/master/data_preprocessing.py) there were prepared 2000 images for train and validation sets each. After several experiments it was revealed that using full dataset doesn't increase model performance in this task, at least as much as it takes time to be trained, so all the results are outputs from the model trained on 2000 images for 8 epochs, batch size 4- bigger batch size couldn't have been performed by existing resources.
+In [data_preprocessing.py](https://github.com/ashimatyuk/face_segmentation/blob/main/data_preprocessing.py) there were prepared 2000 images for train and validation sets each. After several experiments it was revealed that using full dataset doesn't increase model performance in this task, at least as much as it takes time to be trained, so all the results are outputs from the model trained on 2000 images for 8 epochs, batch size 4- bigger batch size couldn't have been performed by existing resources.
 
 # Model
 
