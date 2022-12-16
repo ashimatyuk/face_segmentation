@@ -174,7 +174,7 @@ def main():
         runner.predict_loader(
             loader=test_loader,
             model=model,
-            resume=Path(dir_path, 'logdir', 'checkpoints', 'model.best.pth')
+            resume=Path(dir_path, 'model.best.pth')
             )
     )))
     transform_img = A.Compose([
