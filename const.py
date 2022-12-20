@@ -1,19 +1,19 @@
 import pathlib
 from pathlib import Path
 
-dir_path = pathlib.Path.cwd()
-celeb_dir = Path(dir_path, 'CelebAMask-HQ', 'CelebAMask-HQ')
-img_dir_train_all = Path(celeb_dir, 'CelebA-HQ-img')
-img_dir_train = Path(celeb_dir, 'images_train')
-mask_dir = Path(celeb_dir, 'CelebAMask-HQ-mask-anno')
-mask_dir_train = Path(celeb_dir, 'masks_train')
+DIR_PATH = pathlib.Path.cwd()
+CELEB_DIR = Path(DIR_PATH, 'CelebAMask-HQ', 'CelebAMask-HQ')
+IMG_DIR_TRAIN_ALL = Path(CELEB_DIR, 'CelebA-HQ-img')
+IMG_DIR_TRAIN = Path(CELEB_DIR, 'images_train')
+MASK_DIR = Path(CELEB_DIR, 'CelebAMask-HQ-mask-anno')
+MASK_DIR_TRAIN = Path(CELEB_DIR, 'masks_train')
 
-img_dir_val = Path(celeb_dir, 'images_val')
-mask_dir_val = Path(celeb_dir, 'masks_val')
-glasses_faces = Path(celeb_dir, 'glasses_faces')
-glasses_masks = Path(celeb_dir, 'glasses_masks')
+IMG_DIR_VAL = Path(CELEB_DIR, 'images_val')
+MASK_DIR_VAL = Path(CELEB_DIR, 'masks_val')
+GLASSES_FACES = Path(CELEB_DIR, 'glasses_faces')
+GLASSES_MASKS = Path(CELEB_DIR, 'glasses_masks')
 
-test_dir = Path(dir_path, 'test_path')
+TEST_DIR = Path(DIR_PATH, 'test_path')
 
-batch_size = 4
-lr = 0.0001
+BATCH_SIZE = 4
+LR = 0.0001
