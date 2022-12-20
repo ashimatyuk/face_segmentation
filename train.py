@@ -18,16 +18,16 @@ from catalyst import dl
 from catalyst.dl import SupervisedRunner
 
 from data_preprocessing import data_prep
-from dataset import Celeb, TestCeleb
+from dataset import Celeb
 from model import DeepLabv3
-from save_image import save_img
+
 
 def main():
 
     with torch.no_grad():
         torch.cuda.empty_cache()
 
-    task = Task.init(project_name='face-seg', task_name='A.CoarseDropout(p=0.7)')
+    task = Task.init(project_name='face-seg', task_name='A.CoarseDropout(p=0.7) 6k images')
 
     #fixing seeds to make training process determined
     def seed_everything(seed: int):
@@ -41,12 +41,12 @@ def main():
 
 
     data_prep(
-        img_dir_train_all,
-        img_dir_train,
-        mask_dir,
-        mask_dir_train,
-        mask_dir_val,
-        img_dir_val)
+        IMG_DIR_TRAIN_ALL,
+        IMG_DIR_TRAIN,
+        MASK_DIR,
+        MASK_DIR_TRAIN,
+        MASK_DIR_VAL,
+        IMG_DIR_VAL)
 
     train_transform = A.Compose([
         A.Resize(512, 512),
@@ -82,35 +82,25 @@ def main():
     ])
 
     train_dataset = Celeb(
-        img_dir_train,
-        mask_dir_train,
+        IMG_DIR_TRAIN,
+        MASK_DIR_TRAIN,
         transform=train_transform
     )
     val_dataset = Celeb(
-        img_dir_val,
-        mask_dir_val,
-        transform=val_transform
-    )
-    test_dataset = TestCeleb(
-        test_dir,
+        IMG_DIR_VAL,
+        MASK_DIR_VAL,
         transform=val_transform
     )
 
     train_loader = torch.utils.data.DataLoader(
         train_dataset,
-        batch_size=batch_size,
+        batch_size=BATCH_SIZE,
         shuffle=True,
         num_workers=0
     )
     val_loader = torch.utils.data.DataLoader(
         val_dataset,
-        batch_size=batch_size,
-        shuffle=False,
-        num_workers=0
-    )
-    test_loader = torch.utils.data.DataLoader(
-        test_dataset,
-        batch_size=batch_size,
+        batch_size=BATCH_SIZE,
         shuffle=False,
         num_workers=0
     )
@@ -122,7 +112,7 @@ def main():
     loss_fn = nn.BCEWithLogitsLoss()
     optimizer = optim.Adam(
         model.parameters(),
-        lr=lr
+        lr=LR
     )
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
         optimizer,
@@ -168,23 +158,6 @@ def main():
         verbose=True,
     )
 
-    #getting predictions
-    predictions = np.vstack(list(map(
-        lambda x: x["scores"].cpu().numpy(),
-        runner.predict_loader(
-            loader=test_loader,
-            model=model,
-            resume=Path(dir_path, 'model.best.pth')
-            )
-    )))
-    transform_img = A.Compose([
-        A.Resize(512, 512),
-        ToTensorV2()
-    ])
-
-    test_images = os.listdir(test_dir)
-
-    save_img(test_images, test_dir, dir_path, transform_img, predictions)
 
 if __name__ == "__main__":
     main()
